@@ -7,6 +7,8 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import pandas as pd
 build_struct=pd.read_csv('train.csv')
+
+
 corr = build_struct.corr()
 
 
