@@ -20,7 +20,7 @@ def class_or_regress():
 	try :
 		try:
 			assert(type(int(target)))!= type(1) # if this gives value error than its a string so excecut beloe otherwise
-		except ValueError:	
+		except ValueError:
 			X=df.drop([target],axis=1)
 			Y=df[target]
 	except AssertionError:
@@ -30,24 +30,7 @@ def class_or_regress():
 	print('#'*40)
 	print(X.head(),Y)
 
-	print('#'*40)
-	print('Specify the task - Regression or Classification ')
-	def task():
-		try:
-			task=int(input('''
-Enter 1 for Classification
-Enter 2 for Regression
-Enter 3 to automatically detect the task \n'''))
-			return task	
-
-		except ValueError:
-			print('please enter numeric values')
-			print('#'*40)
-		if task not in [1,2,3]:
-			print('please renter the specified number')
-			task()	
-
-	return task()	
+	
 
 # class_or_regress()
 
@@ -56,18 +39,18 @@ def remove_ids():
 	for i in df.columns:
 	    if df[i].nunique()==df.shape[0]
 	        id_cols.append(i)
-	if id_cols!=[]:        
-		df.drop(id_cols,axis=1,inplace=True)        
+	if id_cols!=[]:
+		df.drop(id_cols,axis=1,inplace=True)
 
 
 def constant_column():
 	colsToRemove = []
 	for col in df.columns:
-	        if df[col].std() == 0: 
+	        if df[col].std() == 0:
 	            colsToRemove.append(col)
-	        
+
 	df.drop(colsToRemove, axis=1, inplace=True)
-	test.drop(colsToRemove, axis=1, inplace=True) 
+	test.drop(colsToRemove, axis=1, inplace=True)
 
 def drop_sparse():
     flist = [x for x in df.columns]
@@ -80,7 +63,7 @@ def drop_sparse():
 def label_encode():
 	for f in df.columns :
 	        if (df[f].dtype=='object'):
-	           
+
 	            lbl = preprocessing.LabelEncoder()
 	            lbl.fit(list(df[f].values))
 	            df[f] = lbl.transform(list(df[f].values))
